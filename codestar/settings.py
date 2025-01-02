@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+# In codestar/settings.py, import the appropriate packages 
+# (Note: You will use dj_database_url in a later step). 
+# Now we connect the settings.py file to the env.py file:
+import os
+import dj_database_url
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=4&z0s83*ae$h8l6snr&-p&i7uq12^fs)_8chvs=w4xo6&!p!6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-duffew-djangoblog-sjpqbd68xg4.ws.codeinstitute-ide.net', '.herokuapp.com']
 
@@ -71,17 +78,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'codestar.wsgi.application'
 
+# Next in the settings.py file, we need to comment out the local sqlite3 database connection.
+# Note: Django provides this local sqlite3 database by default for development, 
+# but we are going to go with a production-ready PostgreSQL cloud database instead.
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+# Then, in the settings.py file, connect to the environment variable 
+# DATABASE_URL you previously added to the env.py file:
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
