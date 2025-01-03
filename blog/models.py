@@ -33,3 +33,6 @@ class Post(models.Model):
     # In the Post model, add an attribute status defined as an integer field with a default of 0.
     # As you can see, this uses a constant STATUS. Create this constant above the class as a tuple.
     status = models.IntegerField(choices=STATUS, default=0)
+    # In the Post model, add a new field named excerpt using the TextField field type. As the excerpt is optional, 
+    # the user must be able to leave this database row blank without throwing an error.
+    excerpt = models.TextField(blank=True)
