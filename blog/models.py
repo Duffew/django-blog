@@ -39,6 +39,14 @@ class Post(models.Model):
     # Using what you have learned, add a field called updated_on to the Post model.
     # The field is the same type as created_on but should have the argument of auto_now=True instead.
     updated_on = models.DateTimeField(auto_now=True)
+    # Let's start by adding a class Meta to our Post model. 
+    # Note: You should add this at the bottom of the Post Model under the fields.
+    class Meta:
+        ordering = ["-created_on"]
+    
+    # Now, add a method to our Post model. Note: Methods should always be below Meta classes.
+    def __str__(self):
+        return f"The title of the post is {self.title} | written by {self.author}"
 
 
 # Underneath the Post model, create a new Comment model. Python convention dictates that we 
@@ -55,3 +63,11 @@ class Comment(models.Model):
     body = models.TextField()
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
+    # Add metadata to the Comment model that orders the comments with the oldest first.
+    class Meta:
+        ordering = ["created_on"]
+    
+    # Add a Python str dunder method to the Comment model 
+    # that returns a string in the format shown in the topic image.
+    def __str__(self):
+        return f"Comment {self.body} by {self.author}"
