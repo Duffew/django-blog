@@ -39,6 +39,8 @@ class Post(models.Model):
     # Using what you have learned, add a field called updated_on to the Post model.
     # The field is the same type as created_on but should have the argument of auto_now=True instead.
     updated_on = models.DateTimeField(auto_now=True)
+
+
     # Let's start by adding a class Meta to our Post model. 
     # Note: You should add this at the bottom of the Post Model under the fields.
     class Meta:
@@ -63,6 +65,7 @@ class Comment(models.Model):
     body = models.TextField()
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
+    
     # Add metadata to the Comment model that orders the comments with the oldest first.
     class Meta:
         ordering = ["created_on"]
