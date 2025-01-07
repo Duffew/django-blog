@@ -39,3 +39,19 @@ class Post(models.Model):
     # Using what you have learned, add a field called updated_on to the Post model.
     # The field is the same type as created_on but should have the argument of auto_now=True instead.
     updated_on = models.DateTimeField(auto_now=True)
+
+
+# Underneath the Post model, create a new Comment model. Python convention dictates that we 
+# leave two blank lines between the end of one class and the start of a new one.
+# Using the completed ERD and what you have learned from creating the Post model, add the correct fields.
+# All of the fields should have lower-case names and underscores in place of spaces.
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name="comments"
+    )
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="commenter"
+    )
+    body = models.TextField()
+    approved = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
