@@ -36,3 +36,6 @@ class Post(models.Model):
     # In the Post model, add a new field named excerpt using the TextField field type. As the excerpt is optional, 
     # the user must be able to leave this database row blank without throwing an error.
     excerpt = models.TextField(blank=True)
+    # Using what you have learned, add a field called updated_on to the Post model.
+    # The field is the same type as created_on but should have the argument of auto_now=True instead.
+    updated_on = models.DateTimeField(auto_now=True)
