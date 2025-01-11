@@ -33,19 +33,20 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-duffew-djangoblog-u4fzca2pger.ws.codeinstitute-ide.net', '.herokuapp.com']
+ALLOWED_HOSTS = ['8000-duffew-djangoblog-lgu6iezxrs8.ws.codeinstitute-ide.net', '.herokuapp.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin', 
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # add the app to the list of installed apps, surround the app name in single quotes, use a trailing comma
+    'django_summernote',
     'blog',
 ]
 

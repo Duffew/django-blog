@@ -19,7 +19,10 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    # Add the new path ‘blog/’ into the urlpatterns
-    path("", include("blog.urls"), name='blog-urls'),
+    # order paths alphabetically
     path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')),
+    path("", include("blog.urls"), name='blog-urls'),
+    
+    
 ]
