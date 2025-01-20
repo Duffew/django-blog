@@ -155,6 +155,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # build a path for our subdirectory static so we can link to files in the static directory from a template. 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+# This setting defines where Django will serve static files from.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
