@@ -15,11 +15,13 @@
                         <div class="card-body">
                             <div class="image-container">
                                 <div class="image-flash">
+                                    <!-- The double brace notation indicates a variable. -->
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
                             </div>
                             <a href="#" class="post-link">
                                 <h2 class="card-title">{{ post.title }}</h2>
+                                <p class="card-text">{{ post.excerpt }}</p>
                             </a>
 
                             <hr />
@@ -28,6 +30,15 @@
                         </div>
                     </div>
                 </div>
+                <!-- The brace and percentage sign notation, is what we call a tag. Tags are more complex than variables. 
+                 Some of them, like the block tag, allow for text or HTML to be inserted. 
+                 Others, like the for loop, control flow by performing loops or logical operations. -->
+                <!-- This if statement checks to see how many times our for loop has run. If the counter is divisible by three, 
+                  then it inserts another closing div tag and a new div with the class of row. This is so that we have 
+                  a maximum of three posts per row on the homepage. If you change that number to 2 and refresh your project, 
+                  you will see that you have three rows of two posts instead of two rows of three. 
+                  This is a handy trick to remember when formatting your own list pages. 
+                  Make sure you put the number back to 3 and save your index.html file before moving on. -->
                 {% if forloop.counter|divisibleby:3 %}
             </div>
             <div class="row">
@@ -52,5 +63,5 @@
 {% endblock %}
 
 {% block copyright %}
-    Copyright 2025 Scout!
+Copyright 2025 Scout!
 {% endblock %}
