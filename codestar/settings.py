@@ -22,6 +22,7 @@ if os.path.isfile('env.py'):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # create a TEMPLATES_DIR constant to build a path for our subdirectory 'templates'.
+# we set TEMPLATES_DIR value to the templates directory in our base, or top-level directory.
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
@@ -68,7 +69,10 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # add your newly created TEMPLATES_DIR constant to the list of 'DIRS'.
+        # The DIRS key tells Django which directories to look in to find our templates
         'DIRS': [TEMPLATES_DIR],
+        # The TEMPLATES setting also has APP_DIRS set to True, which means that Django will also look for 
+        # a templates directory inside all our app directories
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
