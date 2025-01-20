@@ -51,6 +51,16 @@
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
+            <!-- add another if statement to see if the page object has a previous page. 
+             Don't forget to add the endif tag. -->
+            {% if page_obj.has_previous %}
+            <!-- Inside the if statement add a list item. 
+             Inside that, add an anchor tag with the class of page-link. 
+             Set the href attribute to add the correct query string to change the page to the previous page number.
+             The link text should be set to « PREV. Note: &laquo; is the HTML character code for 
+             a left-pointing double angle quotation mark (left pointing guillemet). -->
+            <li><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo; PREV</a></li>
+            {% endif %}
             {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
             {% endif %}
