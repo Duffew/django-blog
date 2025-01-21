@@ -33,5 +33,9 @@ def post_detail(request, slug):
     return render(
         request,
         "blog/post_detail.html",
+        # below is a python dictionary
+        # We retrieved one single blog post, stored it in a variable called post and passed that through 
+        # to the template in a dictionary where both the value and key name was, you guessed it, post. 
+        # This is called context and it is how you pass data from your own views to a template.
         {"post": post},
     )

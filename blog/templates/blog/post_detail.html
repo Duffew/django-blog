@@ -6,7 +6,7 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">{{ post.title }}</h1>
+                <h1 class="post-title">{{ post.title }}</h1> 
                 <!-- Post author goes before the | the post's created date goes after -->
                 <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
             </div>
@@ -23,6 +23,9 @@
             <div class="card-body">
                 <!-- The post content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
+                <!-- The safe filter tells Django that this content is  safe to be interpreted as HTML.
+                 When you remove the safe filter, instead of rendering the HTML for us, Django displays all of 
+                 the HTML tags as well as the text. -->
                 <p class="card-text">
                     {{ post.content | safe }}
                 </p>
