@@ -29,6 +29,9 @@ def post_detail(request, slug):
 
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
+    # added in POST lessons
+    comments = post.comments.all().order_by("-created_on")
+    comment_count = post.comments.filter(approved=True).count()
 
     return render(
         request,
@@ -37,5 +40,9 @@ def post_detail(request, slug):
         # We retrieved one single blog post, stored it in a variable called post and passed that through 
         # to the template in a dictionary where both the value and key name was, you guessed it, post. 
         # This is called context and it is how you pass data from your own views to a template.
-        {"post": post},
+        {"post": post,
+        # added is POST lessons
+        "comments": comments,
+        "comment_count": comment_count,
+        },     
     )
