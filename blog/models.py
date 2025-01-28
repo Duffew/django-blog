@@ -57,6 +57,10 @@ class Post(models.Model):
 # All of the fields should have lower-case names and underscores in place of spaces.
 class Comment(models.Model):
     post = models.ForeignKey(
+        # While the Post model above doesn't have a field named comments, the related_name in our Comment model sets up a logical link, 
+        # effectively creating this association. This is what is called a reverse lookup. 
+        # We don't access the Comment model directly.
+        # Instead, we fetch the related data from the perspective of the Post model.
         Post, on_delete=models.CASCADE, related_name="comments"
     )
     author = models.ForeignKey(

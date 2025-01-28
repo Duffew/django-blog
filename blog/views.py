@@ -36,16 +36,33 @@ def post_detail(request, slug):
     comment_count = post.comments.filter(approved=True).count()
 
     if request.method == "POST":
+        print("Received a POST request")
+        # Inside the if statement, we create an instance of the CommentForm class 
+        # using the form data that was sent in the POST request. In our case, the form data is the comment's text. 
+        # As specified in forms.py, this will be stored in the body field.
+        # We then assign this instance to a variable named comment_form.
         comment_form = CommentForm(data=request.POST)
+        # Firstly, we check to see if the form is valid.
         if comment_form.is_valid():
+            # Then, we call the comment_form's save method with commit=False. Calling the save method 
+            # with commit=False returns an object that hasn't yet been saved to the database so that we can 
+            # modify it further. We do this because we need to populate the post and author fields before we save. 
+            # The object will not be written to the database until we call the save method again.
             comment = comment_form.save(commit=False)
+            # We can then modify the object by setting the author field of the comment to the current request.user - the user 
+            # who is currently logged in. We also set the post field using the post variable, which contains 
+            # the result of the get_object_or_404 helper function at the start of the view code.
             comment.author = request.user
             comment.post = post
+            # Now, we can finally call the save method to write the data to the database.
             comment.save()
             messages.add_message(request, messages.SUCCESS,'Comment submitted and awaiting approval'
     )
-
+    # Outside the if statement, we create a blank instance of the CommentForm class. This line resets the content of the form to 
+    # blank so that a user can write a second comment if they wish.
     comment_form = CommentForm()
+
+    print("About to render template")
 
     return render(
         request,
