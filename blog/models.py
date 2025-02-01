@@ -1,6 +1,7 @@
 from django.db import models
 # Add a new import at the top for the User model.
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -24,6 +25,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
+    featured_image = CloudinaryField('image', default='placeholder')
     # In the Post model, add an attribute content defined as a text field.
     # This is the blog article content.
     content = models.TextField()
