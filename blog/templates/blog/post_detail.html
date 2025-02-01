@@ -33,7 +33,8 @@
                 <!-- The safe filter tells Django that this content is  safe to be interpreted as HTML.
                  When you remove the safe filter, instead of rendering the HTML for us, Django displays all of 
                  the HTML tags as well as the text. -->
-                <p class="card-text">{{ post.content | safe }}</p>
+                <article class="card-text">{{ post.content | safe }}
+                </article>
             </div>
         </div>
     </div>
@@ -74,8 +75,8 @@
                     </p>
                     {% endif %}
                     {% if user.is_authenticated and comment.author == user %}
-                    <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
-                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                    <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                    <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
                     {% endif %}
                 </div>
                 <!-- Our for loop ends here -->

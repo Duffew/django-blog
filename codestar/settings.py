@@ -15,6 +15,7 @@ from pathlib import Path
 # (Note: You will use dj_database_url in a later step). 
 # Now we connect the settings.py file to the env.py file:
 import os
+from django.contrib.messages import constants as messages
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
