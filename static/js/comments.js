@@ -21,8 +21,12 @@ for (let button of editButtons) {
   button.addEventListener("click", (e) => {
     let commentId = e.target.getAttribute("comment_id");
     let commentContent = document.getElementById(`comment${commentId}`).innerText;
+    // The comment content we want to edit is fetched (commentContent) and then placed into the 
+    // comment form's input field, making edits straightforward
     commentText.value = commentContent;
     submitButton.innerText = "Update";
+    // The JavaScript code also modifies the comment form's action attribute to ensure it knows 
+    // which comment it is updating when you click the Edit button
     commentForm.setAttribute("action", `edit_comment/${commentId}`);
   });
 }

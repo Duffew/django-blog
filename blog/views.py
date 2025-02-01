@@ -89,7 +89,12 @@ def comment_edit(request, slug, comment_id):
 
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
+        # In the comment_edit view, we get the relevant Comment instance from the database using 
+        # the comment_id provided in the URL
         comment = get_object_or_404(Comment, pk=comment_id)
+        # We also use the CommentForm class again to access the edited Comment data submitted by the user
+        # By specifying instance=comment, any changes made to the form will be applied to the existing Comment, 
+        # instead of creating a new one
         comment_form = CommentForm(data=request.POST, instance=comment)
 
         if comment_form.is_valid() and comment.author == request.user:
@@ -101,6 +106,12 @@ def comment_edit(request, slug, comment_id):
         else:
             messages.add_message(request, messages.ERROR, 'Error updating comment!')
 
+    # When the comment_edit and comment_delete views have completed their tasks; 
+    # they return the user to the relevant blog post using
+    # HttpResponseRedirect is a Django class that tells the browser to go to a different URL
+    # reverse is a Django function that constructs a URL from the provided URL path name 
+    # and any relevant URL arguments: args=[slug]
+    # Using the slug argument ensures the user is returned to the same blog post on which they edited or deleted a comment.
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
