@@ -25,6 +25,10 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
+    # We've integrated a new field named featured_image, using the imported CloudinaryField class. 
+    # This class allows users to upload media to a database model
+    # If "placeholder" is there, then the default.jpg file in our static folder should be displayed. 
+    # Otherwise, the user-generated image stored on Cloudinary is shown.
     featured_image = CloudinaryField('image', default='placeholder')
     # In the Post model, add an attribute content defined as a text field.
     # This is the blog article content.
