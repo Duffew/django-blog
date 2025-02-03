@@ -15,6 +15,7 @@ from pathlib import Path
 # (Note: You will use dj_database_url in a later step). 
 # Now we connect the settings.py file to the env.py file:
 import os
+import sys
 from django.contrib.messages import constants as messages
 import dj_database_url
 if os.path.isfile('env.py'):
@@ -134,6 +135,9 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    
 # add the following code.
 # This is a list of the trusted origins for requests. As shown, you need to add both 
 # your local development server URL domain 
