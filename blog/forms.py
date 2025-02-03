@@ -1,6 +1,5 @@
-from .models import Comment
 from django import forms
-
+from .models import Comment
 
 # We created a class called CommentForm that inherited from Django's forms.ModelForm class. 
 # Because this class is inherited from a built-in Django class, we can simply use the Meta class 

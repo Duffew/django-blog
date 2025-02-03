@@ -6,6 +6,9 @@ from cloudinary.models import CloudinaryField
 # define the database table for About Me
 
 class About(models.Model):
+    """
+    stores a single 'about me' text
+    """
     title = models.CharField(max_length=200)
     profile_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
@@ -16,6 +19,9 @@ class About(models.Model):
 
 
 class CollaborateRequest(models.Model):
+    """
+    Stores a single collaboration request message
+    """
     name = models.CharField(max_length=200)
     email = models.EmailField()
     message = models.TextField()

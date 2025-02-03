@@ -10,6 +10,17 @@ from cloudinary.models import CloudinaryField
 STATUS = ((0, "Draft"), (1, "Published"))
 # Create a class named Post inheriting from the Model class.
 class Post(models.Model):
+    """
+
+    Stores a single blog post entry related to :model:`auth.User`
+    
+    In a Django model class, you will also need to include any models its 
+    ForeignKeys are related to, hence :model:`auth.User`.
+    Note: that we’ve prefaced the model with the label model: and enclosed the model name 
+    with markdown backticks in the docstrings to state unambiguously that the word User 
+    in the docstring refers to the model User in the auth app.
+
+    """
     # In the Post model, add an attribute title defined as a character field with a max length of 200 characters.
     title = models.CharField(max_length=200, unique=True)
     # In the Post model, add an attribute slug defined as a slug field with a max length of 200 characters.
@@ -62,6 +73,10 @@ class Post(models.Model):
 # Using the completed ERD and what you have learned from creating the Post model, add the correct fields.
 # All of the fields should have lower-case names and underscores in place of spaces.
 class Comment(models.Model):
+    """
+    Stores a single comment entry related to :model:`auth.User`
+    and :model:`blog.Post`
+    """
     post = models.ForeignKey(
         # While the Post model above doesn't have a field named comments, the related_name in our Comment model sets up a logical link, 
         # effectively creating this association. This is what is called a reverse lookup. 
